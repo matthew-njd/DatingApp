@@ -2,6 +2,7 @@
   <div class="container">
     <a class="navbar-brand" href="#">Dating App</a>
 
+    @if (loggedIn) {
     <ul class="navbar-nav me-auto mb-2 mb-md-0">
       <li class="nav-item">
         <a class="nav-link">Matches</a>
@@ -12,8 +13,24 @@
       <li class="nav-item">
         <a class="nav-link">Messages</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link"(click)="logout()">Logout</a>
+      </li>
     </ul>
 
+    } 
+    
+    @if (loggedIn) {
+    <div class="dropdown">
+      <a class="dropdown-toggle text-light">Welcome User</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-list">Edit profile</a>
+        <a class="dropdown-list" (click)="logout()">Logout</a>
+      </div>
+    </div>
+    } 
+    
+    @if (!loggedIn) {
     <form #loginForm="ngForm" (ngSubmit)="login()" class="d-flex">
       <input
         name="username"
@@ -32,5 +49,6 @@
       />
       <button class="btn btn-outline-success" type="submit">Login</button>
     </form>
+    }
   </div>
 </nav>
